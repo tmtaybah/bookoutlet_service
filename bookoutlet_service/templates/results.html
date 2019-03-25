@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+<style>
+    ul.mb {
+      margin-bottom: 50px;
+    }
+</style>
+    {% block content %}
+
+        <h3>Here are the matches we found on bookoutlet based on your want to read list: </h3>
+        {% for match in matches %}
+            <ul class="list-group mb">
+                <li class="list-group-item list-group-item-light">{{ loop.index }} - {{ match }}</li>
+            </ul>
+        {% endfor %}
+
+    {% endblock %}

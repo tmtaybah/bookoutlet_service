@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+    {% block content %}
+
+        {% if current_user.is_authenticated %}
+            <div class="card w-550">
+                <div class="card-body">
+                  <h5 class="card-title">Authorize URL</h5>
+                  <p class="card-text">Please authorize so we can grab your Goodreads To-Read shelf.</p>
+                  <a href="{{ auth_url }}" class="btn btn-primary">Authorize</a>
+                </div>
+           </div>
+       {% else %}
+           <p>you're not logged in so the card isn't showing. </p>
+       {% endif %}
+
+
+    {% endblock %}

@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+    {% block content %}
+
+    <p>Click the button below to get check Bookoutlet against your Goodreads TBR</p>
+    <p> also ... this will take a while .. probably</p>
+
+    <!-- <button type="button" href="{{url_for('results')}}" class="btn btn-primary btn-lg">Check BookOutlet</button> -->
+    <a class="btn btn-primary" href="{{url_for('results')}}" role="button">Check BookOutlet</a>
+
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    {% endblock %}
