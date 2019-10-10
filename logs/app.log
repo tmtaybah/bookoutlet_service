@@ -1,0 +1,122 @@
+[2019-10-08 12:42:30,092] {/usr/local/lib/python3.7/site-packages/flask/app.py:1761} ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py", line 22, in home
+    auth_url = get_auth_url(current_user)
+  File "/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/core/goodreads_oauth.py", line 70, in get_auth_url
+    print(f"GET_AUTH_URL {get_auth_url}", file=sys.stderr)
+NameError: name 'sys' is not defined
+[2019-10-08 12:43:12,001] {/usr/local/lib/python3.7/site-packages/flask/app.py:1761} ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py", line 22, in home
+    auth_url = get_auth_url(current_user)
+  File "/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/core/goodreads_oauth.py", line 70, in get_auth_url
+    print(f"GET_AUTH_URL {get_auth_url}", file=sys.stderr)
+NameError: name 'sys' is not defined
+[2019-10-08 13:02:04,763] {/usr/local/lib/python3.7/site-packages/flask/app.py:1761} ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py", line 22, in home
+    auth_url = get_auth_url(current_user)
+  File "/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/core/goodreads_oauth.py", line 70, in get_auth_url
+    print(f"GET_AUTH_URL {get_auth_url}", file=sys.stderr)
+NameError: name 'sys' is not defined
+[2019-10-08 13:44:49,497] {/usr/local/lib/python3.7/site-packages/flask/app.py:1761} ERROR - Exception on /register [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 509, in do_execute
+    cursor.execute(statement, parameters)
+sqlite3.OperationalError: no such table: user
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python3.7/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py", line 34, in register
+    if form.validate_on_submit():
+  File "/usr/local/lib/python3.7/site-packages/flask_wtf/form.py", line 101, in validate_on_submit
+    return self.is_submitted() and self.validate()
+  File "/usr/local/lib/python3.7/site-packages/wtforms/form.py", line 310, in validate
+    return super(Form, self).validate(extra)
+  File "/usr/local/lib/python3.7/site-packages/wtforms/form.py", line 152, in validate
+    if not field.validate(self, extra):
+  File "/usr/local/lib/python3.7/site-packages/wtforms/fields/core.py", line 206, in validate
+    stop_validation = self._run_validation_chain(form, chain)
+  File "/usr/local/lib/python3.7/site-packages/wtforms/fields/core.py", line 226, in _run_validation_chain
+    validator(form, self)
+  File "/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/forms.py", line 24, in validate_username
+    user = User.query.filter_by(username=username.data).first()
+  File "/usr/local/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 2895, in first
+    ret = list(self[0:1])
+  File "/usr/local/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 2687, in __getitem__
+    return list(res)
+  File "/usr/local/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 2995, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.7/site-packages/sqlalchemy/orm/query.py", line 3018, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.7/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+    context)
+  File "/usr/local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 265, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.7/site-packages/sqlalchemy/util/compat.py", line 248, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.7/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.7/site-packages/sqlalchemy/engine/default.py", line 509, in do_execute
+    cursor.execute(statement, parameters)
+sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user [SQL: 'SELECT user.id AS user_id, user.username AS user_username, user.email AS user_email, user.img_file AS user_img_file, user.password AS user_password, user.request_token AS user_request_token, user.request_secret AS user_request_secret, user.access_token AS user_access_token, user.access_secret AS user_access_secret \nFROM user \nWHERE user.username = ?\n LIMIT ? OFFSET ?'] [parameters: ('username', 1, 0)] (Background on this error at: http://sqlalche.me/e/e3q8)
+[2019-10-08 15:42:59,298] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:89} INFO - member id retrieved: 25083955

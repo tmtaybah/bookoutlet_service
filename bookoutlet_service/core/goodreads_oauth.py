@@ -7,21 +7,20 @@ from bookoutlet_service import db
 from bookoutlet_service.models import User
 
 
-
-''' goes through the oauth steps to establish an authenticated session
+""" goes through the oauth steps to establish an authenticated session
 should create an authorization url where user will authorize or deny
 application and redirects user to callback url.
-returns a session object '''
+returns a session object """
 
 goodreads = OAuth1Service(
-        consumer_key=os.environ.get('GR_KEY'),
-        consumer_secret=os.environ.get('GR_SECRET'),
-        name='goodreads',
-        request_token_url='https://www.goodreads.com/oauth/request_token',
-        authorize_url='https://www.goodreads.com/oauth/authorize',
-        access_token_url='https://www.goodreads.com/oauth/access_token',
-        base_url='https://www.goodreads.com/'
-    )
+    consumer_key=os.environ.get("GR_KEY"),
+    consumer_secret=os.environ.get("GR_SECRET"),
+    name="goodreads",
+    request_token_url="https://www.goodreads.com/oauth/request_token",
+    authorize_url="https://www.goodreads.com/oauth/authorize",
+    access_token_url="https://www.goodreads.com/oauth/access_token",
+    base_url="https://www.goodreads.com/",
+)
 
 
 def establish_session():
@@ -31,8 +30,8 @@ def establish_session():
 
     # step 2 -- exchange request token for access token
     authorize_url = goodreads.get_authorize_url(request_token)
-    print('Opening the following URL in your browser: ' + authorize_url)
-    print('Waiting authorization...')
+    print("Opening the following URL in your browser: " + authorize_url)
+    print("Waiting authorization...")
     print(authorize_url)
     webbrowser.open(authorize_url)
 
@@ -49,15 +48,17 @@ def establish_session():
     ACCESS_TOKEN = session.access_token
     ACCESS_TOKEN_SECRET = session.access_token_secret
 
-    print('Success -- session established')
+    print("Success -- session established")
     return session
 
 
 def get_auth_url(current_user):
-    # step 1 -- get request token
+
+    # get request token & exchange for auth url
     request_token, request_token_secret = goodreads.get_request_token()
     authorize_url = goodreads.get_authorize_url(request_token)
 
+    # set current user data(?) & commit to db
     current_user.request_token = request_token
     current_user.request_secret = request_token_secret
     db.session.commit()
@@ -66,6 +67,8 @@ def get_auth_url(current_user):
 
 
 def oauth_session(current_user):
+
+    print(f"CURRENT USER IS: {current_user}")
 
     request_token = current_user.request_token
     request_token_secret = current_user.request_secret
