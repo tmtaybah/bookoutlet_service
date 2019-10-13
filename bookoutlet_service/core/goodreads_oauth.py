@@ -1,5 +1,5 @@
 import os
-import webbrowser
+import webbrowser, configparser
 
 from rauth.service import OAuth1Service, OAuth1Session
 
@@ -12,9 +12,15 @@ should create an authorization url where user will authorize or deny
 application and redirects user to callback url.
 returns a session object """
 
+# read API tokens 
+config = configparser.ConfigParser()
+config.read('goodreads.env')
+goodreads_key = config['goodreads']['key']
+goodreads_secret = config['goodreads']['secret']
+
 goodreads = OAuth1Service(
-    consumer_key=os.environ.get("GR_KEY"),
-    consumer_secret=os.environ.get("GR_SECRET"),
+    consumer_key=goodreads_key,
+    consumer_secret=goodreads_secret,
     name="goodreads",
     request_token_url="https://www.goodreads.com/oauth/request_token",
     authorize_url="https://www.goodreads.com/oauth/authorize",
