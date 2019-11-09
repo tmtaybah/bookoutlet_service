@@ -20,8 +20,15 @@ python3 run.py
 
 ---
 
-### #TODO:
-+ fix oauth (not very reliable atm)
-+ add notifier
-+ fix db scheme
-+ containerize server using docker
+### TO-DO:
+- [ ] fix oauth (not very reliable atm)
+- [ ] add notifier
+- [x] fix db scheme
+- [ ] containerize server using docker
+- [ ] explain why oauth1 is used instead of standard oauth2
+- [ ] when logout clean cookies/forget oauth state 
+- [ ] flash message when logout 
+- [x] ask user for profile link during registration + able to update on account page  
+- [x] double check user id when authorizing 
+- [ ] add section on how to deauthorize app 
+- [ ] add db migration 
