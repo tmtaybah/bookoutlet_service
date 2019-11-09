@@ -1,4 +1,4 @@
-import time
+import time, re
 
 from flask import render_template, url_for, flash, redirect, request, abort
 from flask_login import login_user, current_user, logout_user, login_required
@@ -12,7 +12,7 @@ from bookoutlet_service.core.goodreads_api import get_user, get_bookshelf
 from bookoutlet_service.core.goodreads_oauth import oauth_session, get_auth_url
 from bookoutlet_service.core.bookoutlet import query_bookoutlet
 
-# # TODO: add links
+# TODO: add links
 
 
 @app.route("/")
@@ -31,10 +31,18 @@ def register():
     form = RegistrationForm()
 
     if form.validate_on_submit():
+        # check that I can clean profile url
+        print(f"profile url = {form.goodreads_id.data}")
+
         # hash user password using Bcrypt
         pw_hash = bcrypt.generate_password_hash(form.password.data).decode("utf-8")
+        goodreads_id = re.sub("[^0-9]", "", form.goodreads_id.data)
+        print(f"CLEANED UP URL == {goodreads_id}")
         user = User(
-            username=form.username.data, email=form.email.data, password=pw_hash
+            username=form.username.data,
+            email=form.email.data,
+            goodreads_id=goodreads_id,
+            password=pw_hash,
         )
 
         # update database with new user
@@ -64,7 +72,9 @@ def login():
             next_page = request.args.get("next")
             return redirect(next_page) if next_page else redirect(url_for("home"))
         else:
-            flash_msg = "Login Unsuccessful. Please check email and password"
+            flash_msg = (
+                "Login Unsuccessful. Please check the email and password you've entered"
+            )
             flash(flash_msg, "danger")
 
     return render_template("login.html", title="Login", form=form)
@@ -73,10 +83,15 @@ def login():
 @app.route("/logout")
 def logout():
     logout_user()
-    return redirect(url_for("home"))  # do i want to redirect to login?
+    resp = app.make_response(render_template("home.html"))
+    resp.set_cookie("token", expires=0)
+    return resp
+
+    # return redirect(url_for("home"))  # do i want to redirect to login?
 
 
 @app.route("/callback")
+@login_required
 def callback():
     return render_template("callback.html", title="callback")
 
@@ -84,9 +99,20 @@ def callback():
 @app.route("/results")
 def results():
     session = oauth_session(current_user)
+    print(f"session is >> {session} ... what can we do with it {dir(session)}")
+    session_cookies = session.cookies
+    print(f"session cookies: {dir(session_cookies)}")
     goodreads_user = get_user(session)
     member_id = goodreads_user[0]
     app.logger.info("member id retrieved: %s", member_id)
+
+    # check member id retrieved matches goodreads profile id
+    goodreads_id = current_user.goodreads_id
+    if member_id != goodreads_id:
+        flash_msg = "A different user is currently already logged into Goodreads. Please log out of Goodreads and try again."
+        flash(flash_msg, "danger")
+        auth_url = get_auth_url(current_user)
+        return render_template("home.html", title="Home", auth_url=auth_url)
 
     start = time.time()
     books = get_bookshelf(member_id)
@@ -97,6 +123,8 @@ def results():
 
     runtime = end - start
     app.logger.info("runtime %d", runtime)
+
+    # session_cookies.clear_session_cookies()
 
     return render_template("results.html", title="results", matches=matches)
 
