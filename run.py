@@ -1,5 +1,6 @@
 import os, sys
 from bookoutlet_service import app, db
+from bookoutlet_service.models import User, BookoutletBook, GoodreadsBook
 
 THREADS_PER_PAGE = 2  # WHAT IS THIS ACTUALLY DOING?!!
 
@@ -13,6 +14,16 @@ def clear_data(session):
         print(f"Clear table: {table}")
         session.execute(table.delete())
     session.commit()
+
+
+@app.shell_context_processor
+def make_shell_context():
+    return {
+        "db": db,
+        "User": User,
+        "bookoutlet": BookoutletBook,
+        "goodreads": GoodreadsBook,
+    }
 
 
 if __name__ == "__main__":

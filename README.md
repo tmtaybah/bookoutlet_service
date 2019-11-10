@@ -31,4 +31,4 @@ python3 run.py
 - [x] ask user for profile link during registration + able to update on account page  
 - [x] double check user id when authorizing 
 - [ ] add section on how to deauthorize app 
-- [ ] add db migration 
+- [x] add db migration 
