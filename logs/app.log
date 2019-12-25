@@ -175,3 +175,58 @@ sqlalchemy.exc.OperationalError: (sqlite3.OperationalError) no such table: user 
 [2019-11-08 19:24:32,236] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:125} INFO - runtime 4
 [2019-11-08 19:25:40,073] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 25083955
 [2019-11-08 19:33:02,939] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:125} INFO - runtime 442
+[2019-12-22 17:25:02,281] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 25083955
+[2019-12-22 17:31:02,063] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 25083955
+[2019-12-22 17:37:42,326] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:125} INFO - runtime 400
+[2019-12-22 17:51:52,441] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 25083955
+[2019-12-22 17:53:43,914] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 25083955
+[2019-12-22 19:19:38,426] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 25083955
+[2019-12-22 19:39:51,566] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 25083955
+[2019-12-22 19:49:00,304] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 25083955
+[2019-12-22 19:56:05,511] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:127} INFO - runtime 425
+[2019-12-22 19:57:38,947] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 25083955
+[2019-12-22 20:23:11,884] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 25083955
+[2019-12-22 20:39:59,983] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 25083955
+[2019-12-22 20:49:22,628] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 25083955
+[2019-12-22 21:30:11,319] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 25083955
+[2019-12-23 11:38:28,185] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 25083955
+[2019-12-23 20:42:06,229] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 25083955
+[2019-12-23 20:50:31,816] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 91463866
+[2019-12-23 20:51:01,257] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 91463866
+[2019-12-23 20:51:04,984] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:127} INFO - runtime 3
+[2019-12-23 20:51:59,224] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 91463866
+[2019-12-23 20:52:02,744] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:127} INFO - runtime 3
+[2019-12-23 20:52:09,814] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:107} INFO - member id retrieved: 91463866
+[2019-12-23 20:52:12,780] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:127} INFO - runtime 2
+[2019-12-23 22:07:35,738] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:116} INFO - member id retrieved: 25083955
+[2019-12-23 22:09:56,792] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:116} INFO - member id retrieved: 25083955
+[2019-12-23 22:19:25,257] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:116} INFO - member id retrieved: 91463866
+[2019-12-23 22:19:28,812] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:136} INFO - runtime 3
+[2019-12-24 18:59:08,297] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:130} INFO - member id retrieved: 91463866
+[2019-12-24 18:59:11,350] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:150} INFO - runtime 3
+[2019-12-24 19:01:12,742] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:131} INFO - member id retrieved: 91463866
+[2019-12-24 19:01:16,501] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:151} INFO - runtime 3
+[2019-12-24 19:22:44,226] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:133} INFO - member id retrieved: 91463866
+[2019-12-24 19:22:47,667] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:153} INFO - runtime 3
+[2019-12-24 19:25:05,404] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:133} INFO - member id retrieved: 91463866
+[2019-12-24 19:25:08,985] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:153} INFO - runtime 3
+[2019-12-24 19:49:00,112] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:131} INFO - member id retrieved: 91463866
+[2019-12-24 19:49:03,808] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:151} INFO - runtime 3
+[2019-12-24 21:04:13,086] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:229} INFO - member id retrieved: 91463866
+[2019-12-24 21:04:16,867] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:252} INFO - runtime 3
+[2019-12-24 21:36:23,046] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:226} INFO - member id retrieved: 91463866
+[2019-12-24 21:36:26,908] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:249} INFO - runtime 3
+[2019-12-24 21:36:41,828] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:226} INFO - member id retrieved: 91463866
+[2019-12-24 21:36:45,549] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:249} INFO - runtime 3
+[2019-12-24 22:01:48,323] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:228} INFO - member id retrieved: 91463866
+[2019-12-24 22:01:52,224] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:228} INFO - member id retrieved: 91463866
+[2019-12-24 22:01:52,248] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:251} INFO - runtime 3
+[2019-12-24 22:01:56,282] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:251} INFO - runtime 4
+[2019-12-24 22:02:40,788] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:228} INFO - member id retrieved: 91463866
+[2019-12-24 22:02:45,033] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:251} INFO - runtime 4
+[2019-12-24 22:49:50,492] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:220} INFO - member id retrieved: 91463866
+[2019-12-24 22:49:55,957] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:243} INFO - runtime 5
+[2019-12-24 23:02:44,497] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:220} INFO - member id retrieved: 91463866
+[2019-12-24 23:02:48,686] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:243} INFO - runtime 4
+[2019-12-24 23:02:55,727] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:220} INFO - member id retrieved: 91463866
+[2019-12-24 23:02:59,879] {/Users/tara/Developer/projects/bookoutlet_service/bookoutlet_service/routes.py:243} INFO - runtime 4

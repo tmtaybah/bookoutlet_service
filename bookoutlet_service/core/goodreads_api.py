@@ -5,32 +5,44 @@ from math import ceil
 
 from requests import get
 import xml.etree.ElementTree as ET
+from flask_login import current_user
 
+from bookoutlet_service import app
 from bookoutlet_service.models import GoodreadsBook
-from bookoutlet_service.core.goodreads_oauth import establish_session
+from bookoutlet_service.core.goodreads_oauth import GoodreadsClient
 
 
+goodreads_client = GoodreadsClient()
 base_url = "https://www.goodreads.com/"
+
 
 # read developer key
 config = configparser.ConfigParser()
 config.read("goodreads.env")
 developer_key = config["goodreads"]["key"]
-# developer_key = os.environ.get('GR_KEY')
 
 
-# returns user(id, name) tuple from goodreads' get user api call
-# takes in oauth session object as param
 def get_user(session):
+    """ returns user(id, name) tuple from goodreads' get user api call
+    takes in oauth session object as param
+    Might throw a KeyError exception if user has not authorized app. This error should be handled by the caller of this function.
+    """
 
     response = session.get(base_url + "api/auth_user", header_auth=True)
+    app.logger.info("Response status code: ", response.status_code)
+
+    # access token stale .. need new oauth session
+    if response.status_code == 401:
+        session = goodreads_client.new_session(current_user)
+        response = session.get(base_url + "api/auth_user", header_auth=True)
 
     if response.status_code != 200:
         raise Exception(
             "Could not get user ID -- Error {}".format(response.status_code)
         )
-    else:
-        response_str = response.content.decode("utf-8")
+        return
+
+    response_str = response.content.decode("utf-8")
 
     # get XML tree root
     root = ET.fromstring(response_str)
@@ -40,7 +52,6 @@ def get_user(session):
     id = user_node.get("id")
     name = user_node.find("name").text
     user = (id, name)
-    print("user details: {}".format(user))
 
     return user
 

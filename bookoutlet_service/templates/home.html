@@ -1,18 +1,32 @@
 {% extends "layout.html" %}
 
-    {% block content %}
+{% block content %}
 
-        {% if current_user.is_authenticated %}
-            <div class="card w-550">
-                <div class="card-body">
-                  <h5 class="card-title">Authorize URL</h5>
-                  <p class="card-text">Please authorize so we can grab your Goodreads To-Read shelf.</p>
-                  <a href="{{ auth_url }}" class="btn btn-primary">Authorize</a>
-                </div>
-           </div>
-       {% else %}
-           <p>you're not logged in so the card isn't showing. </p>
-       {% endif %}
+{% if current_user.is_authenticated %}
+<style>
+    ul.mb {
+        margin-bottom: 50px;
+    }
+</style>
+
+<h3>Here are the matches we found on bookoutlet based on your want to read list: </h3>
+{% for match in matches %}
+<ul class="list-group mb">
+    <li class="list-group-item list-group-item-light">{{ loop.index }} - {{ match }}</li>
+</ul>
+{% endfor %}
+
+{% else %}
+<p>you're not logged in so the card isn't showing. </p>
+<p> This website searches bookoutlet for books on your Goodreads <b>Want to Read</b> shelf </p>
+
+<!-- display choice of login or sign up  -->
+<a href="{{url_for('login')}}" class="btn btn-primary">Login</a>
+<a href="{{url_for('register')}}" class="btn btn-primary">Sign Up</a>
 
 
-    {% endblock %}
+
+{% endif %}
+
+
+{% endblock %}

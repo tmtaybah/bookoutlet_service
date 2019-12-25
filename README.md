@@ -21,14 +21,18 @@ python3 run.py
 ---
 
 ### TO-DO:
-- [ ] fix oauth (not very reliable atm)
-- [ ] add notifier
+- [x] fix oauth (not very reliable atm)
+- [ ] add notifier/ email w SendGrid maybe
 - [x] fix db scheme
 - [ ] containerize server using docker
 - [ ] explain why oauth1 is used instead of standard oauth2
-- [ ] when logout clean cookies/forget oauth state 
 - [ ] flash message when logout 
 - [x] ask user for profile link during registration + able to update on account page  
 - [x] double check user id when authorizing 
 - [ ] add section on how to deauthorize app 
 - [x] add db migration 
+- [ ] integrate/ scale w Celery 
+- [ ] explore using vue.js on frontend 
+- [ ] add more comprehensive testing 
+- [ ] add links to matches 
+

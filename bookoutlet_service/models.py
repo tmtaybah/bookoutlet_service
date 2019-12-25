@@ -25,7 +25,6 @@ class User(db.Model, UserMixin):
     # OAuth tokens
     request_token = db.Column(db.String(120))
     request_secret = db.Column(db.String(120))
-
     access_token = db.Column(db.String(120))
     access_secret = db.Column(db.String(120))
 

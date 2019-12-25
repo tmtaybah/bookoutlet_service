@@ -5,21 +5,31 @@ from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 
 # local imports
-from bookoutlet_service import app, db, bcrypt, mail, handler
+from bookoutlet_service import app, db, bcrypt, mail, handler, celery
 from bookoutlet_service.forms import *
 from bookoutlet_service.models import User
 from bookoutlet_service.core.goodreads_api import get_user, get_bookshelf
-from bookoutlet_service.core.goodreads_oauth import oauth_session, get_auth_url
+from bookoutlet_service.core.goodreads_oauth import GoodreadsClient
 from bookoutlet_service.core.bookoutlet import query_bookoutlet
 
-# TODO: add links
+
+goodreads_client = GoodreadsClient()
 
 
 @app.route("/")
 @app.route("/home")
 def home():
-    auth_url = get_auth_url(current_user)
-    return render_template("home.html", title="Home", auth_url=auth_url)
+    if current_user.is_authenticated:
+        return bookoutlet_results()
+    else:
+        return render_template("home.html", title="Home", matches=[])
+
+
+@app.route("/auth")
+@login_required
+def auth():
+    auth_url = goodreads_client.authorize(current_user)
+    return render_template("auth.html", title="Authorize", auth_url=auth_url)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -59,7 +69,7 @@ def register():
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for("home"))
+        return redirect(url_for("main"))
 
     form = LoginForm()
 
@@ -83,50 +93,16 @@ def login():
 @app.route("/logout")
 def logout():
     logout_user()
-    resp = app.make_response(render_template("home.html"))
+    form = LoginForm()
+    # resp = app.make_response(render_template("home.html"))
+    resp = app.make_response(render_template("login.html", title="Login", form=form))
     resp.set_cookie("token", expires=0)
     return resp
 
-    # return redirect(url_for("home"))  # do i want to redirect to login?
-
 
 @app.route("/callback")
-@login_required
-def callback():
-    return render_template("callback.html", title="callback")
-
-
-@app.route("/results")
 def results():
-    session = oauth_session(current_user)
-    print(f"session is >> {session} ... what can we do with it {dir(session)}")
-    session_cookies = session.cookies
-    print(f"session cookies: {dir(session_cookies)}")
-    goodreads_user = get_user(session)
-    member_id = goodreads_user[0]
-    app.logger.info("member id retrieved: %s", member_id)
-
-    # check member id retrieved matches goodreads profile id
-    goodreads_id = current_user.goodreads_id
-    if member_id != goodreads_id:
-        flash_msg = "A different user is currently already logged into Goodreads. Please log out of Goodreads and try again."
-        flash(flash_msg, "danger")
-        auth_url = get_auth_url(current_user)
-        return render_template("home.html", title="Home", auth_url=auth_url)
-
-    start = time.time()
-    books = get_bookshelf(member_id)
-    matches = []
-    for book in books:
-        matches += query_bookoutlet(book)
-    end = time.time()
-
-    runtime = end - start
-    app.logger.info("runtime %d", runtime)
-
-    # session_cookies.clear_session_cookies()
-
-    return render_template("results.html", title="results", matches=matches)
+    return bookoutlet_results()
 
 
 @app.route("/contact")
@@ -160,30 +136,6 @@ def account():
     return render_template(
         "account.html", title="Update account", img_file=img_file, form=form
     )
-
-
-def send_reset_email(user):
-    token = user.get_reset_token()
-    print("token {}".format(token))
-
-    msg = Message(
-        "Password Reset Request", sender="noreply@demo.com", recipients=[user.email]
-    )
-    msg.body = f"""We received a request to reset the password associated with\
-the email address {user.email}. If you made this request, follow this link to\
-reset your password:
-
-{url_for('reset_token', token=token, _external=True)}
-
-If you did not make this request, you can safely disregard this email.
-
-
-Thanks,
-The Team
-"""
-    print("MSG OBJ {}".format(msg))
-
-    mail.send(msg)
 
 
 @app.route("/reset_password", methods=["GET", "POST"])
@@ -230,4 +182,65 @@ def reset_token(token):
         return redirect(url_for("login"))
 
     return render_template("reset_token.html", title="Reset Password", form=form)
+
+
+def send_reset_email(user):
+    token = user.get_reset_token()
+
+    msg = Message(
+        "Password Reset Request", sender="noreply@demo.com", recipients=[user.email]
+    )
+    msg.body = f"""We received a request to reset the password associated with\
+    the email address {user.email}. If you made this request, follow this link to\
+    reset your password:
+
+    {url_for('reset_token', token=token, _external=True)}
+
+    If you did not make this request, you can safely disregard this email.
+
+
+    Thanks,
+    The Team
+    """
+
+    mail.send(msg)
+
+
+def bookoutlet_results():
+
+    session = goodreads_client.reuse_session(current_user)
+
+    try:
+        goodreads_user = get_user(session)
+    except KeyError:
+        auth_url = goodreads_client.authorize(current_user)
+        return render_template("auth.html", title="Authorize", auth_url=auth_url)
+
+    member_id = goodreads_user[0]
+    app.logger.info("member id retrieved: %s", member_id)
+
+    # check member id retrieved matches goodreads profile id
+    goodreads_id = current_user.goodreads_id
+
+    if member_id != goodreads_id:
+        flash_msg = "A different user is currently already logged into Goodreads. Please log out of Goodreads and try again."
+        flash(flash_msg, "danger")
+        auth_url = get_auth_url(current_user)
+
+        return render_template("auth.html", title="Authorize", auth_url=auth_url)
+
+    start = time.time()
+
+    books = get_bookshelf(member_id)
+    matches = []
+    for book in books:
+        # check_bookoutlet.delay(book)
+        matches += query_bookoutlet(book)
+
+    end = time.time()
+
+    runtime = end - start
+    app.logger.info("runtime %d", runtime)
+
+    return render_template("home.html", title="results", matches=matches)
 

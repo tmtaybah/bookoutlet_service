@@ -1,6 +1,7 @@
 import os
 import sys
 import logging
+from bookoutlet_service.tasks import make_celery
 from logging.handlers import RotatingFileHandler
 
 from flask import Flask
@@ -30,7 +31,12 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///site.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_ECHO"] = True
 
+# celery config
+app.config["CELERY_BACKEND"] = "db+sqlite:///tasks.db"
+app.config["CELERY_BROKER_URL"] = "amqp://localhost//"
+
 # app initializations
+celery = make_celery(app)
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 bcrypt = Bcrypt(app)

@@ -1,10 +1,13 @@
 alembic==1.2.1
+amqp==2.5.2
 atomicwrites==1.3.0
 attrs==18.2.0
 bcrypt==3.1.5
 beautifulsoup4==4.7.1
+billiard==3.6.1.0
 blinker==1.4
--e git+https://github.com/tmtaybah/bookoutlet_service.git@1b68b0c24514641fda93e02951b75b6018a14cb1#egg=bookoutlet_service
+-e git+https://github.com/tmtaybah/bookoutlet_service.git@ca8622a3076affd065cc7b8c3bef0abe1e846e37#egg=bookoutlet_service
+celery==4.4.0
 certifi==2018.11.29
 cffi==1.11.5
 chardet==3.0.4
@@ -19,10 +22,13 @@ Flask-Migrate==2.5.2
 Flask-OAuth==0.12
 Flask-SQLAlchemy==2.3.2
 Flask-WTF==0.14.2
+gunicorn==20.0.4
 httplib2==0.12.0
 idna==2.8
+importlib-metadata==1.3.0
 itsdangerous==1.1.0
 Jinja2==2.10.1
+kombu==4.6.7
 lazy==1.3
 Mako==1.1.0
 MarkupSafe==1.1.0
@@ -37,6 +43,7 @@ pycparser==2.19
 pytest==4.2.0
 python-dateutil==2.8.0
 python-editor==1.0.4
+pytz==2019.3
 rauth==0.7.3
 requests==2.21.0
 requests-oauthlib==1.1.0
@@ -45,5 +52,7 @@ soupsieve==1.7.2
 SQLAlchemy==1.2.15
 urllib3==1.24.1
 URLObject==2.4.3
+vine==1.3.0
 Werkzeug==0.14.1
 WTForms==2.2.1
+zipp==0.6.0
