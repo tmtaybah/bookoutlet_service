@@ -7,7 +7,7 @@ beautifulsoup4==4.7.1
 billiard==3.6.1.0
 blinker==1.4
 -e git+https://github.com/tmtaybah/bookoutlet_service.git@ca8622a3076affd065cc7b8c3bef0abe1e846e37#egg=bookoutlet_service
-celery==4.4.0
+celery==5.2.2
 certifi==2018.11.29
 cffi==1.11.5
 chardet==3.0.4
