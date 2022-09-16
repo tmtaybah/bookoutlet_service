@@ -30,7 +30,7 @@ itsdangerous==1.1.0
 Jinja2==2.10.1
 kombu==4.6.7
 lazy==1.3
-Mako==1.1.0
+Mako==1.2.2
 MarkupSafe==1.1.0
 more-itertools==5.0.0
 multiprocess==0.70.6.1
